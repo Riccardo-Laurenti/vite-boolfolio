@@ -10,7 +10,7 @@ export default {
 
 <template>
     <section>
-        <h1 class="text-center my-4">My post</h1>
+        <h1 class="text-center my-4">My projects</h1>
         <div v-if="projects.length">
             <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
         </div>
