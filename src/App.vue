@@ -4,12 +4,14 @@ import axios from 'axios';
 const endpoint = 'http://127.0.0.1:8000/api/projects/';
 
 import AppHeader from './components/AppHeader.vue';
+import ProjectLists from './components/projects/ProjectLists.vue';
 export default {
-  components: { AppHeader },
+  components: { AppHeader, ProjectLists },
+
   data: () => ({ projects: [] }),
   methods: {
     fetchProjects() {
-      axios.get(endpoint).then(res => { console.log(res.data) })
+      axios.get(endpoint).then(res => { this.projects = res.data })
     }
   },
   created() {
@@ -22,10 +24,7 @@ export default {
 <template>
   <AppHeader />
   <main class="container my-4">
-    <ul>
-      <li v-for="project in projects" :key="project.id">
-        {{ project.title }}</li>
-    </ul>
+    <ProjectLists :projects="projects" />
   </main>
 </template>
 
